@@ -5,7 +5,7 @@ from datetime import date
 
 def get_temps():
     try:
-        r = requests.get('https://api.open321weathermap.org/data/2.5/weather?id=3081368&units=metric&appid=a89a223e85afb3a8c1c8433ec5f055e5')
+        r = requests.get('https://api.openweathermap.org/data/2.5/weather?id=3081368&units=metric&appid=a89a223e85afb3a8c1c8433ec5f055e5')
         r = r.json()
         return r
     except:
