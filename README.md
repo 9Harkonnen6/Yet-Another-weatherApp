@@ -16,8 +16,7 @@ Just me horsing around with some Python.
 - [] changing location
 - [] changing units
 - [] changing themes
-- [] actual date
-- [] etc etc
+- [x] actual date
 
 ## Built With:
 * [Python](https://www.python.org/)
