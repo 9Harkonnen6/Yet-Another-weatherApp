@@ -5,7 +5,7 @@ from datetime import date
 
 def get_temps():
     try:
-        r = requests.get('https://api.open321weathermap.org/data/2.5/weather?id=3081368&units=metric&appid=a89a223e85afb3a8c1c8433ec5f055e5')
+        r = requests.get('https://api.openweathermap.org/data/2.5/weather?id=3081368&units=metric&appid=a89a223e85afb3a8c1c8433ec5f055e5')
         r = r.json()
         return r
     except:
@@ -21,11 +21,11 @@ sg.LOOK_AND_FEEL_TABLE['MyNewTheme'] = {'BACKGROUND': '#eeeeee',
                                             'BORDER': 1, 'SLIDER_DEPTH': 0, 'PROGRESS_DEPTH': 0,
                                             }
 sg.theme('MyNewTheme')
-    
 r = get_temps()
 if r:
     today = date.today()
-    layout = [[sg.Text(f"{r['name']}, {r['sys']['country']}", key='-city-', background_color="#CDD0D5"), sg.Text(today.strftime("%A %d/%Y"))],
+    layout = [[sg.Menu([['Options', ['Preferences']], ['Help', ['About']]])],
+            [sg.Text(f"{r['name']}, {r['sys']['country']}", key='-city-', background_color="#CDD0D5"), sg.Text(today.strftime("%A %d/%Y"))],
             [sg.Frame("Temperature", [[sg.Column([[sg.Text('official:'), sg.Text(f"{round(r['main']['temp'])} °C", key='-official-', background_color="#CDD0D5")],[sg.Text('feels like:'),sg.Text(f"{round(r['main']['feels_like'])} °C", key='-feels_like-', background_color="#CDD0D5")]], element_justification='right')]]), sg.Button('Refresh')],
             [sg.Button('Exit')]]
     # window initialization
