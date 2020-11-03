@@ -23,10 +23,17 @@ sg.LOOK_AND_FEEL_TABLE['MyNewTheme'] = {'BACKGROUND': '#eeeeee',
 sg.theme('MyNewTheme')
 r = get_temps()
 if r:
+    if r['main']['feels_like'] < 14:
+        temperature_color = '#4298f5'
+    elif 14 < r['main']['feels_like'] > 18:
+        temperature_color = '#2ab019'
+    else:
+        temperature_color = '#bd4313'
+
     today = date.today()
     layout = [[sg.Menu([['Options', ['Preferences']], ['Help', ['About']]])],
-            [sg.Text(f"{r['name']}, {r['sys']['country']}", key='-city-', background_color="#CDD0D5"), sg.Text(today.strftime("%A %d/%Y"))],
-            [sg.Frame("Temperature", [[sg.Column([[sg.Text('official:'), sg.Text(f"{round(r['main']['temp'])} °C", key='-official-', background_color="#CDD0D5")],[sg.Text('feels like:'),sg.Text(f"{round(r['main']['feels_like'])} °C", key='-feels_like-', background_color="#CDD0D5")]], element_justification='right')]]), sg.Button('Refresh')],
+            [sg.Text(f"{r['name']}, {r['sys']['country']}", key='-city-', background_color="#CDD0D5"), sg.Text(today.strftime("%A, %d/%m/%Y"))],
+            [sg.Frame("Temperature", [[sg.Column([[sg.Text('official:'), sg.Text(f"{round(r['main']['temp'])} °C", key='-official-', background_color="#CDD0D5")],[sg.Text('feels like:'),sg.Text(f"{round(r['main']['feels_like'])} °C", key='-feels_like-', background_color=temperature_color)]], element_justification='right')]]), sg.Button('Refresh')],
             [sg.Button('Exit')]]
     # window initialization
     window = sg.Window('weatherApp', layout)
