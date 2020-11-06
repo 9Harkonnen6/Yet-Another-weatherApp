@@ -1,6 +1,8 @@
 # weatherApp
 Just me horsing around with some Python.
 
+![weatherAppDemo](../assets/demo.png?raw=true)
+
 
 
 ## Prerequisites:
